@@ -29,8 +29,8 @@ class MyUserManager(BaseUserManager):
             raise ValueError('Users must have an email address')
 
         user = self.model(
-            email=self.normalize_email(email),
-            date_of_birth=date_of_birth,
+                            email=self.normalize_email(email),
+                            date_of_birth=date_of_birth,
         )
 
         user.set_password(password)
@@ -43,9 +43,9 @@ class MyUserManager(BaseUserManager):
         birth and password.
         """
         user = self.create_user(
-            email,
-            password=password,
-            date_of_birth=date_of_birth,
+                                email,
+                                password=password,
+                                date_of_birth=date_of_birth,
         )
         user.is_admin = True
         user.save(using=self._db)
@@ -53,22 +53,19 @@ class MyUserManager(BaseUserManager):
 
 
 class MyUser(AbstractBaseUser):
-    email = models.EmailField(
-        max_length=255,
-        unique=True,
-    )
+    email = models.EmailField(max_length=255,unique=True)
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
     date_of_birth = models.DateField()
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
-    credits = models.PositiveIntegerField(default=100)
-    linkedin_token = models.TextField(blank=True, default='')
-    expiry_date = models.DateTimeField(null=True, blank=True)
+    # credits = models.PositiveIntegerField(default=100)
+    # linkedin_token = models.TextField(blank=True, default='')
+    # expiry_date = models.DateTimeField(null=True, blank=True)
     objects = MyUserManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['date_of_birth']
+    REQUIRED_FIELDS = []
 
     def __str__(self):
         return self.email

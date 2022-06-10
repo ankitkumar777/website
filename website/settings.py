@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_simplejwt',
-    'users',
+    'user',
     'shipping',
     'payment',
     'order',
@@ -146,6 +146,6 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_PROFILE_MODULE = 'users.MyUser'
+AUTH_PROFILE_MODULE = 'user.MyUser'
 
-AUTH_USER_MODEL = 'users.MyUser'
+AUTH_USER_MODEL = 'user.MyUser'
